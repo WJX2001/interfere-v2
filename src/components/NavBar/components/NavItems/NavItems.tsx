@@ -1,6 +1,7 @@
 import { MENUITEMS } from '@/Constant/constant';
 import { Button, List, ListItem, makeStyles } from '@material-ui/core';
 import React from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 const useStyles = makeStyles(() => ({
   ListContainer: {
@@ -16,10 +17,6 @@ const useStyles = makeStyles(() => ({
     color: '#F1F1F3',
     p: '6px 8px',
     position: 'relative',
-    '.active&:after, &:hover&:after': {
-      transform: 'scaleX(1)',
-      transformOrigin: 'bottom left',
-    },
     '&:after': {
       content: "''",
       position: 'absolute',
@@ -32,16 +29,28 @@ const useStyles = makeStyles(() => ({
       transformOrigin: 'bottom right',
       transition: 'transform 0.25s ease-out',
     },
+    '&.active:after': {
+      transform: 'scaleX(1)',
+      transformOrigin: 'bottom left',
+    },
   },
 }));
 
 const NavItems = () => {
   const classes = useStyles();
+  const navigate = useNavigate();
+  const location = useLocation();
+
   return (
     <List className={classes.ListContainer}>
       {MENUITEMS.map((item, index) => (
-        <ListItem key={index}>
-          <Button className={classes.buttonItem}>{item.title}</Button>
+        <ListItem key={index} className={classes.listItem}>
+          <Button
+            className={`${classes.buttonItem} ${location.pathname === item.url ? 'active' : ''}`}
+            onClick={() => navigate(item.url)}
+          >
+            {item.title}
+          </Button>
         </ListItem>
       ))}
     </List>

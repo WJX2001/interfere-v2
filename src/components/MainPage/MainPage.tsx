@@ -5,7 +5,7 @@ import ConnectWallletPaper from '../ConnectWallletPaper';
 import { useAccount } from 'wagmi';
 
 const MainPage = () => {
-  const { address, isConnected } = useAccount();
+  const { isConnected } = useAccount();
   return (
     <>
       {isConnected ? (
