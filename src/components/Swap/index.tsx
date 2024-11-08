@@ -4,10 +4,15 @@ import {
   CardHeader,
   Container,
   Grid,
+  IconButton,
   makeStyles,
   Theme,
 } from '@material-ui/core';
-import React from 'react';
+
+import SwapVerticalCircleIcon from '@material-ui/icons/SwapVerticalCircle';
+import CoinField from './CoinField';
+import { Col, Input, Row } from 'antd';
+import styles from './index.module.less'
 const useStyles = makeStyles((theme: Theme) => ({
   paperContainer: {
     borderRadius: theme.spacing(2),
@@ -33,6 +38,10 @@ const useStyles = makeStyles((theme: Theme) => ({
   footer: {
     marginTop: '285px',
   },
+  switchButton: {
+    display: 'flex',
+    justifyContent: 'center',
+  },
 }));
 const Swap = () => {
   const classes = useStyles();
@@ -45,14 +54,23 @@ const Swap = () => {
         >
           <CardHeader title="Swap" style={{ color: 'white' }} />
           <CardContent>
-            <Grid
-              container
-              direction="column"
-              alignItems="center"
-              spacing={2}
-            >
-              22222
-            </Grid>
+            <Col>
+              <Row className={styles['card-row']}>
+                <CoinField />
+              </Row>
+              <Row className={styles['card-row']}>
+                <IconButton
+                >
+                  <SwapVerticalCircleIcon
+                    style={{ color: 'white' }}
+                    fontSize="large"
+                  />
+                </IconButton>
+              </Row>
+              <Row className={styles['card-row']}>
+                <CoinField />
+              </Row>
+            </Col>
           </CardContent>
         </Card>
       </Container>

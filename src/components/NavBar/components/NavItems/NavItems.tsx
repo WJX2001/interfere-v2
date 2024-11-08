@@ -17,6 +17,10 @@ const useStyles = makeStyles(() => ({
     color: '#F1F1F3',
     p: '6px 8px',
     position: 'relative',
+    '.active&:after, &:hover&:after': {
+      transform: 'scaleX(1)',
+      transformOrigin: 'bottom left',
+    },
     '&:after': {
       content: "''",
       position: 'absolute',
@@ -46,7 +50,9 @@ const NavItems = () => {
       {MENUITEMS.map((item, index) => (
         <ListItem key={index} className={classes.listItem}>
           <Button
-            className={`${classes.buttonItem} ${location.pathname === item.url ? 'active' : ''}`}
+            className={`${classes.buttonItem} ${
+              location.pathname === item.url ? 'active' : ''
+            }`}
             onClick={() => navigate(item.url)}
           >
             {item.title}
