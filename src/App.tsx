@@ -1,22 +1,26 @@
 import { ThemeProvider } from '@material-ui/core';
+import styles from './App.module.less'
 
-import './App.css';
 
 import { SnackbarProvider } from 'notistack';
 import React from 'react';
 import Navbar from './components/NavBar/Navbar';
+import { Route, Routes } from 'react-router-dom';
+import MainPage from './components/MainPage/MainPage';
 
 function App() {
   return (
     <div
       id="app"
-      className="container-fluid bg-gradient-custom"
-      style={{ backgroundImage: 'linear-gradient(to right, #17081E, #282b30)' }}
+      style={{ backgroundColor: '#1B2030',height:'100vh' }}
     >
       <SnackbarProvider maxSnack={3}>
         <ThemeProvider>
           <React.Fragment>
             <Navbar />
+            <Routes>
+                <Route path='/' element={<MainPage />}/>
+               </Routes>
           </React.Fragment>
         </ThemeProvider>
       </SnackbarProvider>
